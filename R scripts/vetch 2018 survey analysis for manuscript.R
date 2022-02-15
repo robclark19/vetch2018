@@ -47,17 +47,18 @@ zoom_map <- autoplot.OpenStreetMap(base_map_zoom) +
   scale_size_continuous(10) +
   xlab("Longitude") +
   ylab("Latitude") +
-  theme(legend.title = element_blank()) +
-  scale_color_manual(values=c("Blue", "Red"))
+  labs(color="PEMV", shape="Location Type") +
+  scale_color_manual(values=c("Blue", "Red")) +
+  theme(legend.position="bottom", legend.box="vertical", legend.margin=margin())
 
 zoom_map
 
 # This plot is associated with Figure 1 in the accompanying manuscript.
 # save map ####
 
-# ggsave(filename = "./Figures/Vetch Fig 1.png", 
-#       plot = zoom_map, device = "png",
-#       width = 9, height = 4.5, units = "in")
+ ggsave(filename = "./Figures/Vetch Fig 1.png", 
+       plot = zoom_map, device = "png",
+       width = 9, height = 4.5, units = "in")
 
 
 
