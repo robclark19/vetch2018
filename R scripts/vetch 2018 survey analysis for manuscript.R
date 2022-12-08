@@ -37,13 +37,16 @@ base_map_zoom <- openmap(upperLeft = c(46.25, -117.65),
 
 # type argument for sat images is "bing"
 
+# drop some sites that overlap too much
+aphidsites.dat <- aphidsites.dat[!(row.names(aphidsites.dat) %in% c("2", "11", "12", "14", "16", "19", "31", "34", "37", "38", "41", "48","44", "45", "47")),]
+
 # Build a close up map with satellite imagery & zoomed in map
 zoom_map <- autoplot.OpenStreetMap(base_map_zoom) +
   geom_point(data = aphidsites.dat,
              aes(x = Long, y = Lat,
                  color = PEMV,
                  shape = Location.Type),
-             size=4) +
+             size=3) +
   scale_size_continuous(10) +
   xlab("Longitude") +
   ylab("Latitude") +
@@ -65,7 +68,7 @@ zoom_map
 
 
 # Fig 2 ######
-# 2018 aphid abundnace on plants
+# 2018 aphid abundance on plants
 legume.2018.dat <- read.xlsx("./Data/legume data 2018.xlsx", 1, header=TRUE) %>% filter(Crop.type == "Non-crop")
 
 #convert abundance to density
