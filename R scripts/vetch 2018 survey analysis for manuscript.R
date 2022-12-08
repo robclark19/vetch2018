@@ -14,6 +14,7 @@ library("effects")
 library("emmeans")
 library("MASS")
 
+
 # mapping tools
 library("OpenStreetMap")
 library("ggpubr")
@@ -83,7 +84,7 @@ aphid.hosts.fig <- ggplot(legume.2018.dat, aes(x=Total.Aphid.Abudance,
   theme_bw(base_size = 16) + 
   theme(panel.border = element_blank(), panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")) +
-  labs(y="Legume species from 10m transects", x="Aphid density (Log aphid # per meter)", fill="PEMV Present") + 
+  labs(y="Legume species from transects", x="Aphids per meter sampled (log scale)", fill="PEMV Present") + 
   scale_fill_grey() +
   theme(axis.line.x = element_line(color="black", size = 0.5),
         axis.line.y = element_line(color="black", size = 0.5)) +
@@ -106,7 +107,7 @@ host.coverage.fig <- ggplot(legume.2018.dat, aes(x=Total.Plant.Coverage,
   theme_bw(base_size = 16) + 
   theme(panel.border = element_blank(), panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")) +
-  labs(y="Legume species from transects", x="Sum plant coverage (m)", fill="PEMV Present") + 
+  labs(y="Legume species from transects", x="Cumulative plant cover (m)", fill="PEMV Present") + 
   scale_fill_grey() +
   theme(axis.line.x = element_line(color="black", size = 0.5),
         axis.line.y = element_line(color="black", size = 0.5)) +
@@ -155,6 +156,11 @@ veg.dat$aphid.bin <- ifelse(veg.dat$aphid.presence == "Yes", 1, 0)
 # i like the binomial model and may just go with that similar to the ecology fig
 vetch.glm.3 <- glm(aphid.bin ~ vetchcm, family=binomial, data=veg.dat)
 Anova(vetch.glm.3)
+summary(vetch.glm.3)
+
+# https://stats.stackexchange.com/questions/46345/how-to-calculate-goodness-of-fit-in-glm-r
+with(summary(vetch.glm.3), 1 - deviance/null.deviance)
+
 
 # make it like a simple version of the weevil fig from thunderdorm
 
