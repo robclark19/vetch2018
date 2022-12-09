@@ -92,6 +92,9 @@ aphid.hosts.fig <- ggplot(legume.2018.dat, aes(x=Total.Aphid.Abudance,
   theme(legend.position=c(0.8,0.2))
 aphid.hosts.fig
 
+
+
+
 # write figure 2 to folder, use arguments to modify size or file type!
 # ggsave(filename = "./Figures/Vetch Fig 2.svg", plot = aphid.hosts.fig, device = "svg",
 #       width = 6, height = 5, units = "in")
