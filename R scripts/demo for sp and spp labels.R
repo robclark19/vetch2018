@@ -16,29 +16,26 @@ ggplot(mtcars, aes(factor(am), mpg, fill=gear)) +
 
 
 # try with our data
-blorp <- legume.2018.dat$Plant.Species
-blorp2 <-c(
-  "Astragalus purshii",
-  "Astragalus sp.",
-  "Lathyrus latifolius",
-  "Lupinus caudatus",
-  "Lupinus sericeus",
-  "Medicago lupulina",
-  "Melilotus officinalis",
-  "Oxytropis sericea",
-  "Trifolium campestre",   
-  "Trifolium pratense",
-  "Trifolium repens",
-  "Trifolium sp.",        
-  "Vicia americana",
-  "Vicia sativa",
-  "Vicia tetrasperma",
-  "Vicia villosa",
-  "Vigna"~italic(sp.)
-)
 
-y=expression('No. of'~italic(bacteria X)~'isolates with corresponding types')
 
+taco <- c("Vicia villosa" = expression(italic("Vicia villosa")),
+          "Trifolium sp." = expression(italic("Trifolium")~sp.),
+          "Vicia americana" = expression(italic("Vicia americana")),
+          "Astragalus purshii" = expression(italic("Astragalus purshii")),
+          "Lupinus sericeus" = expression(italic("Lupinus sericeus")),
+          "Medicago lupulina" = expression(italic("Medicago lupulina")),
+          "Vigna sp." = expression(italic("Vigna")~sp.),
+          "Trifolium pratense" = expression(italic("Trifolium pratense")),
+          "Melilotus officinalis" = expression(italic("Melilotus officinalis")),
+          "Lathyrus latifolius" = expression(italic("Lathyrus latifolius")),
+          "Lupinus caudatus" = expression(italic("Lupinus caudatus")),
+          "Vicia sativa" = expression(italic("Vicia sativa")),
+          "Trifolium campestre" = expression(italic("Trifolium campestre")),
+          "Vicia tetrasperma" = expression(italic("Vicia tetrasperma")),
+          "Trifolium repens" = expression(italic("Trifolium repens")),
+          "Oxytropis sericea" = expression(italic("Oxytropis sericea")),
+          "Astragalus sp." = expression(italic("Astragalus")~sp.)
+          )
 
 
 # Fig 2 ######
@@ -61,6 +58,9 @@ aphid.hosts.fig <- ggplot(legume.2018.dat, aes(x=Total.Aphid.Abudance,
   scale_fill_grey() +
   theme(axis.line.x = element_line(color="black", size = 0.5),
         axis.line.y = element_line(color="black", size = 0.5)) +
-  theme(axis.text.y = element_text(face = "italic")) +
-  theme(legend.position=c(0.8,0.2))
+  # theme(axis.text.y = element_text(face = "italic")) +
+  theme(legend.position=c(0.8,0.2)) +
+  scale_y_discrete(labels=taco)
+
 aphid.hosts.fig
+

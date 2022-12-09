@@ -67,6 +67,25 @@ zoom_map
 
 
 
+taco <- c("Vicia villosa" = expression(italic("Vicia villosa")),
+          "Trifolium sp." = expression(italic("Trifolium")~sp.),
+          "Vicia americana" = expression(italic("Vicia americana")),
+          "Astragalus purshii" = expression(italic("Astragalus purshii")),
+          "Lupinus sericeus" = expression(italic("Lupinus sericeus")),
+          "Medicago lupulina" = expression(italic("Medicago lupulina")),
+          "Vigna sp." = expression(italic("Vigna")~sp.),
+          "Trifolium pratense" = expression(italic("Trifolium pratense")),
+          "Melilotus officinalis" = expression(italic("Melilotus officinalis")),
+          "Lathyrus latifolius" = expression(italic("Lathyrus latifolius")),
+          "Lupinus caudatus" = expression(italic("Lupinus caudatus")),
+          "Vicia sativa" = expression(italic("Vicia sativa")),
+          "Trifolium campestre" = expression(italic("Trifolium campestre")),
+          "Vicia tetrasperma" = expression(italic("Vicia tetrasperma")),
+          "Trifolium repens" = expression(italic("Trifolium repens")),
+          "Oxytropis sericea" = expression(italic("Oxytropis sericea")),
+          "Astragalus sp." = expression(italic("Astragalus")~sp.)
+)
+
 
 # Fig 2 ######
 # 2018 aphid abundance on plants
@@ -88,16 +107,20 @@ aphid.hosts.fig <- ggplot(legume.2018.dat, aes(x=Total.Aphid.Abudance,
   scale_fill_grey() +
   theme(axis.line.x = element_line(color="black", size = 0.5),
         axis.line.y = element_line(color="black", size = 0.5)) +
-  theme(axis.text.y = element_text(face = "italic")) +
-  theme(legend.position=c(0.8,0.2))
+  # theme(axis.text.y = element_text(face = "italic")) +
+  theme(legend.position=c(0.8,0.2)) +
+  scale_y_discrete(labels=taco)
+
 aphid.hosts.fig
 
 
 
 
+
 # write figure 2 to folder, use arguments to modify size or file type!
-# ggsave(filename = "./Figures/Vetch Fig 2.svg", plot = aphid.hosts.fig, device = "svg",
-#       width = 6, height = 5, units = "in")
+# change to png for journal formatting issues on thier pdf conversion process
+ggsave(filename = "./Figures/Vetch Fig 2.png", plot = aphid.hosts.fig, device = "png",
+     width = 6, height = 5, units = "in")
 
 # Fig 3 #####
 # plant coverage figure (2b?)
@@ -114,13 +137,14 @@ host.coverage.fig <- ggplot(legume.2018.dat, aes(x=Total.Plant.Coverage,
   scale_fill_grey() +
   theme(axis.line.x = element_line(color="black", size = 0.5),
         axis.line.y = element_line(color="black", size = 0.5)) +
-  theme(axis.text.y = element_text(face = "italic")) +
-  theme(legend.position=c(0.8,0.2))
+  # theme(axis.text.y = element_text(face = "italic")) +
+  theme(legend.position=c(0.8,0.2))  +
+  scale_y_discrete(labels=taco)
 host.coverage.fig
 
 
 # write figure 3 to folder, use arguments to modify size or file type!
-ggsave(filename = "./Figures/Vetch Fig 3.svg", plot = host.coverage.fig, device = "svg",
+ggsave(filename = "./Figures/Vetch Fig 3.png", plot = host.coverage.fig, device = "png",
        width = 6, height = 5, units = "in")
 
 # Fig 4 ####
@@ -198,7 +222,7 @@ Plot.ac
 
 
 # write figure 4 to folder, use arguments to modify size or file type!
-ggsave(filename = "./Figures/Vetch Fig 4.svg", plot = Plot.ac, device = "svg",
+ggsave(filename = "./Figures/Vetch Fig 4.png", plot = Plot.ac, device = "png",
        width = 6, height = 5, units = "in")
 
 
